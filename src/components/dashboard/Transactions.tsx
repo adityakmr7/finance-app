@@ -1,37 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
+import { transactions } from "../../data/transaction";
 
-interface TransactionItem {
-  id: string;
-  type: "send" | "receive";
-  name: string;
-  amount: string;
-  time: string;
-}
-
-const transactions: TransactionItem[] = [
-  {
-    id: "1",
-    type: "send",
-    name: "Transfer to Firmansyah A.",
-    amount: "- $20",
-    time: "04:03 PM",
-  },
-  {
-    id: "2",
-    type: "receive",
-    name: "Receive from Adam S.",
-    amount: "+ $1,300",
-    time: "02:15 PM",
-  },
-  {
-    id: "3",
-    type: "send",
-    name: "Transfer to John D.",
-    amount: "- $20",
-    time: "01:45 PM",
-  },
-];
 const Transactions = () => {
   return (
     <View style={styles.transactionSection}>
@@ -84,13 +54,17 @@ const styles = StyleSheet.create({
   transactionTitle: {
     fontSize: 24,
     fontWeight: "bold",
+    fontFamily: "Sf-Regular",
   },
   viewAll: {
     color: "#666",
+    fontFamily: "Sf-Regular",
   },
   today: {
     color: "#666",
     marginBottom: 12,
+    fontSize: 8,
+    fontFamily: "Sf-Regular",
   },
   transactionItem: {
     flexDirection: "row",
@@ -108,11 +82,13 @@ const styles = StyleSheet.create({
   },
   transactionName: {
     fontSize: 16,
-    fontWeight: "500",
+    // fontWeight: "500",
+    fontFamily: "Sf-Medium",
   },
   transactionTime: {
     color: "#666",
-    fontSize: 14,
+    fontSize: 12,
+    fontFamily: "Sf-Regular",
   },
   transactionAmount: {
     fontSize: 16,

@@ -10,7 +10,12 @@ const Stats = () => {
     <ScrollView style={styles.container}>
       <BalanceCard />
       <View style={styles.monthContainer}>
-        <MonthSelector />
+        <MonthSelector
+          onMonthSelect={(month) => {
+            console.log("Selected month:", month.value);
+          }}
+          initialMonth="Oct"
+        />
       </View>
       <View style={{ backgroundColor: "#F5F5F5", padding: 8 }}>
         <TransactionCard />

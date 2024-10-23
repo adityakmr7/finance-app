@@ -47,6 +47,7 @@ const BottomTabNavigator: React.FC = () => {
       <Tab.Screen
         name="QrScan"
         options={{
+          headerShown: false,
           title: "QR Scan",
         }}
         component={QrScan}

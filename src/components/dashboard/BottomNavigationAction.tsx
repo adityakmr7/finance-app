@@ -36,6 +36,7 @@ const BottomNavigationAction = ({ state, navigation }: BottomTabBarProps) => {
 
         return (
           <TouchableOpacity
+            key={index}
             onPress={onPress}
             style={[
               styles.navItem,
