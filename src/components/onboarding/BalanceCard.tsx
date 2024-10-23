@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.tertiary,
     borderRadius: 20,
     padding: 20,
-    marginTop: 40,
+    // marginTop: 40,
   },
 
   // Round Card

@@ -1,9 +1,8 @@
 // components/Header/Header.tsx
 import React from "react";
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
-import { HeaderProps } from "./types";
-import Avatar from "../../components/common/Avatar";
-import avatar from "../../components/common/Avatar";
+import { HeaderProps } from "../../screens/Dashboard/types";
+import Avatar from "../common/Avatar";
 
 const Header: React.FC<HeaderProps> = ({
   userName,
