@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   ScrollView,
   Dimensions,
+  Platform,
 } from "react-native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackPramsList } from "../../navigations/types";
@@ -73,6 +74,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fafcfd",
+    paddingTop: Platform.OS === "android" ? 20 : 0,
   },
   header: {
     flexDirection: "row",

@@ -1,6 +1,5 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
-import { transactions } from "../../data/transaction";
 import { Feather } from "@expo/vector-icons";
 import { formatDate } from "../../utils/formatDate";
 import { useTransfer } from "../../hooks/useTransfer";
@@ -18,37 +17,44 @@ const Transactions = () => {
       </View>
       <Text style={styles.today}>TODAY</Text>
 
-      {state?.transfers.map((transaction) => (
-        <View key={transaction.id} style={styles.transactionItem}>
-          <View style={styles.transactionInfo}>
-            <View style={styles.arrowIcon}>
-              {transaction.type === "send" ? (
-                <Feather size={24} name={"arrow-up-right"} />
-              ) : (
-                <Feather size={24} name={"arrow-down-left"} />
-              )}
-            </View>
-            <View>
-              <Text style={styles.transactionName}>
-                {transaction.destination}
-              </Text>
-              <Text style={styles.transactionTime}>
-                {formatDate(transaction.timestamp)}
-              </Text>
-            </View>
-          </View>
-          <Text
-            style={[
-              styles.transactionAmount,
-              {
-                color: transaction.type === "receive" ? "#2ecc71" : "#e74c3c",
-              },
-            ]}
-          >
-            {transaction?.type == "send" ? "-" : "+"} ${transaction.amount}
-          </Text>
+      {state.transfers.length === 0 && (
+        <View style={styles.noTransaction}>
+          <Text style={styles.noTransactionText}>No transactions yet.</Text>
         </View>
-      ))}
+      )}
+      {state?.transfers.map((transaction) => {
+        return (
+          <View key={transaction.id} style={styles.transactionItem}>
+            <View style={styles.transactionInfo}>
+              <View style={styles.arrowIcon}>
+                {transaction.type === "send" ? (
+                  <Feather size={24} name={"arrow-up-right"} />
+                ) : (
+                  <Feather size={24} name={"arrow-down-left"} />
+                )}
+              </View>
+              <View>
+                <Text style={styles.transactionName}>
+                  {transaction.destination}
+                </Text>
+                <Text style={styles.transactionTime}>
+                  {formatDate(transaction.timestamp)}
+                </Text>
+              </View>
+            </View>
+            <Text
+              style={[
+                styles.transactionAmount,
+                {
+                  color: transaction.type === "receive" ? "#2ecc71" : "#e74c3c",
+                },
+              ]}
+            >
+              {transaction?.type == "send" ? "-" : "+"} ${transaction.amount}
+            </Text>
+          </View>
+        );
+      })}
     </View>
   );
 };
@@ -109,6 +115,15 @@ const styles = StyleSheet.create({
   transactionAmount: {
     fontSize: 16,
     fontWeight: "500",
+  },
+  noTransaction: {
+    justifyContent: "center",
+    alignItems: "center",
+    paddingTop: 20,
+  },
+  noTransactionText: {
+    color: "#90A4AE",
+    fontFamily: "Sf-Regular",
   },
 });
 

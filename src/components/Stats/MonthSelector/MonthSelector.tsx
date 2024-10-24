@@ -7,12 +7,8 @@ import Animated, {
   withTiming,
   interpolateColor,
 } from "react-native-reanimated";
-import { COLORS } from "../../constants";
-
-type Month = {
-  label: string;
-  value: string;
-};
+import { COLORS } from "../../../constants";
+import { Month, MonthSelectorProps } from "./types";
 
 const months: Month[] = [
   { label: "Oct", value: "Oct" },
@@ -22,11 +18,6 @@ const months: Month[] = [
   { label: "Feb", value: "Feb" },
   { label: "Mar", value: "Mar" },
 ];
-
-interface MonthSelectorProps {
-  onMonthSelect?: (month: Month) => void;
-  initialMonth?: string;
-}
 
 const MonthSelector: React.FC<MonthSelectorProps> = ({
   onMonthSelect,

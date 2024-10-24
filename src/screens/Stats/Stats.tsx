@@ -1,7 +1,7 @@
 import { ScrollView, StyleSheet, View } from "react-native";
 import { COLORS } from "../../constants";
 import BalanceCard from "../../components/onboarding/BalanceCard";
-import MonthSelector from "./MonthSelector";
+import MonthSelector from "../../components/Stats/MonthSelector/MonthSelector";
 import React from "react";
 import TransactionCard from "./TransactionCard";
 

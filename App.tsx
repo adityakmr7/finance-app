@@ -1,11 +1,11 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import React, { useEffect } from "react";
 import AppNavigator from "./src/navigations/AppNavigator";
 
 SplashScreen.preventAutoHideAsync();
+
 export default function App() {
   const [loaded, error] = useFonts({
     "Sf-Bold": require("./assets/SF-Pro-Display-Bold.otf"),
@@ -30,12 +30,3 @@ export default function App() {
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   SafeAreaView,
   Dimensions,
+  Platform,
 } from "react-native";
 import { SolidButton } from "../../components/common/Buttons";
 import { COLORS } from "../../constants";
@@ -14,16 +15,6 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackPramsList } from "../../navigations/types";
 import { useNavigation } from "@react-navigation/native";
 import BalanceCard from "../../components/onboarding/BalanceCard";
-
-// TODO: may be i will use react native skia to create card component.
-type OnboardingScreenNavigationProp = StackNavigationProp<
-  RootStackPramsList,
-  "Onboarding"
->;
-
-interface Props {
-  navigation: OnboardingScreenNavigationProp;
-}
 
 const TitleSection = () => {
   return (
@@ -85,6 +76,7 @@ const styles = StyleSheet.create({
   },
   content: {
     paddingHorizontal: 16,
+    paddingTop: Platform.OS === "android" ? 20 : 0,
   },
   balanceCardContainer: {
     marginLeft: 40,

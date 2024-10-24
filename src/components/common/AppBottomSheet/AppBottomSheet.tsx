@@ -1,11 +1,10 @@
-// AppBottomSheet.tsx
 import React, { forwardRef, useImperativeHandle } from "react";
 import {
-  StyleSheet,
   Dimensions,
   Modal,
-  View,
+  StyleSheet,
   TouchableWithoutFeedback,
+  View,
 } from "react-native";
 import {
   GestureHandlerRootView,
@@ -13,13 +12,13 @@ import {
   PanGestureHandlerGestureEvent,
 } from "react-native-gesture-handler";
 import Animated, {
+  Extrapolate,
+  interpolate,
+  runOnJS,
   useAnimatedGestureHandler,
   useAnimatedStyle,
   useSharedValue,
   withSpring,
-  interpolate,
-  Extrapolate,
-  runOnJS,
 } from "react-native-reanimated";
 
 const SCREEN_HEIGHT = Dimensions.get("window").height;
