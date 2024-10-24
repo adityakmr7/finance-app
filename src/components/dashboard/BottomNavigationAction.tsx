@@ -8,15 +8,41 @@ import {
 import React from "react";
 import { COLORS } from "../../constants";
 import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
-import { RootTabParamList } from "../../navigations/BottomTabNavigation";
+import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
+import { RootTabParamList } from "../../navigations/types";
 
-export const IconMapper: Record<keyof RootTabParamList, string> = {
-  Home: "🏠",
-  QrScan: "🔄",
-  Stats: "💳",
+const ICON_SIZE = 22;
+const ICON_COLOR = "#A9A9A9";
+const ICON_FOCUS_COLOR = "#000000";
+export const IconMapper: Record<keyof RootTabParamList, Function> = {
+  Home: (isFocused: boolean) => (
+    <Feather
+      name={"home"}
+      size={ICON_SIZE}
+      color={isFocused ? ICON_FOCUS_COLOR : ICON_COLOR}
+    />
+  ),
+  QrScan: (isFocused: boolean) => (
+    <MaterialCommunityIcons
+      name={"line-scan"}
+      color={isFocused ? ICON_FOCUS_COLOR : ICON_COLOR}
+      size={ICON_SIZE}
+    />
+  ),
+  Stats: (isFocused: boolean) => (
+    <Feather
+      name={"credit-card"}
+      size={ICON_SIZE}
+      color={isFocused ? ICON_FOCUS_COLOR : ICON_COLOR}
+    />
+  ),
 };
 
 const BottomNavigationAction = ({ state, navigation }: BottomTabBarProps) => {
+  const Icon = (routeName: keyof RootTabParamList) => {
+    return IconMapper[routeName];
+  };
+
   return (
     <View style={styles.bottomNav}>
       {state.routes.map((route, index) => {
@@ -38,14 +64,9 @@ const BottomNavigationAction = ({ state, navigation }: BottomTabBarProps) => {
           <TouchableOpacity
             key={index}
             onPress={onPress}
-            style={[
-              styles.navItem,
-              {
-                backgroundColor: isFocused ? "#e3e3e3" : "white",
-              },
-            ]}
+            style={[styles.navItem]}
           >
-            <Text>{IconMapper[routeName]}</Text>
+            {Icon(routeName)(isFocused)}
           </TouchableOpacity>
         );
       })}
@@ -62,13 +83,14 @@ const styles = StyleSheet.create({
     borderColor: "#eee",
     position: "absolute",
     bottom: 60,
-    left: Dimensions.get("window").width / 3,
+    left: Dimensions.get("window").width / 4,
     borderRadius: 14,
     backgroundColor: COLORS.secondary,
     elevation: 4,
   },
   navItem: {
-    padding: 8,
+    paddingVertical: 12,
+    paddingHorizontal: 16,
   },
 });
 export default BottomNavigationAction;

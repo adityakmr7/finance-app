@@ -3,7 +3,6 @@ import { StyleSheet, Text, View } from "react-native";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import React, { useEffect } from "react";
-import Onboarding from "./src/screens/Onboarding";
 import AppNavigator from "./src/navigations/AppNavigator";
 
 SplashScreen.preventAutoHideAsync();

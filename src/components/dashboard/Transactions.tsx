@@ -1,8 +1,13 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { transactions } from "../../data/transaction";
+import { Feather } from "@expo/vector-icons";
+import { formatDate } from "../../utils/formatDate";
+import { useTransfer } from "../../hooks/useTransfer";
 
 const Transactions = () => {
+  const { state } = useTransfer();
+
   return (
     <View style={styles.transactionSection}>
       <View style={styles.transactionHeader}>
@@ -11,18 +16,25 @@ const Transactions = () => {
           <Text style={styles.viewAll}>View all</Text>
         </TouchableOpacity>
       </View>
-
       <Text style={styles.today}>TODAY</Text>
 
-      {transactions.map((transaction) => (
+      {state?.transfers.map((transaction) => (
         <View key={transaction.id} style={styles.transactionItem}>
           <View style={styles.transactionInfo}>
-            <Text style={styles.arrowIcon}>
-              {transaction.type === "send" ? "↗" : "↙"}
-            </Text>
+            <View style={styles.arrowIcon}>
+              {transaction.type === "send" ? (
+                <Feather size={24} name={"arrow-up-right"} />
+              ) : (
+                <Feather size={24} name={"arrow-down-left"} />
+              )}
+            </View>
             <View>
-              <Text style={styles.transactionName}>{transaction.name}</Text>
-              <Text style={styles.transactionTime}>{transaction.time}</Text>
+              <Text style={styles.transactionName}>
+                {transaction.destination}
+              </Text>
+              <Text style={styles.transactionTime}>
+                {formatDate(transaction.timestamp)}
+              </Text>
             </View>
           </View>
           <Text
@@ -33,7 +45,7 @@ const Transactions = () => {
               },
             ]}
           >
-            {transaction.amount}
+            {transaction?.type == "send" ? "-" : "+"} ${transaction.amount}
           </Text>
         </View>
       ))}
@@ -79,6 +91,10 @@ const styles = StyleSheet.create({
   arrowIcon: {
     fontSize: 20,
     marginRight: 12,
+    backgroundColor: "#f6f6f6",
+    paddingHorizontal: 12,
+    paddingVertical: 12,
+    borderRadius: 24,
   },
   transactionName: {
     fontSize: 16,

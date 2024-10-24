@@ -4,6 +4,8 @@ import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import { HeaderProps } from "../../screens/Dashboard/types";
 import Avatar from "../common/Avatar";
 
+import { Ionicons } from "@expo/vector-icons";
+
 const Header: React.FC<HeaderProps> = ({
   userName,
   avatarUrl,
@@ -17,8 +19,11 @@ const Header: React.FC<HeaderProps> = ({
         <Text style={styles.userName}>{userName}</Text>
       </View>
     </View>
-    <TouchableOpacity onPress={onNotificationPress}>
-      <Text style={styles.notificationIcon}>🔔</Text>
+    <TouchableOpacity
+      onPress={onNotificationPress}
+      style={styles.notificationContainer}
+    >
+      <Ionicons name={"notifications-outline"} size={24} />
     </TouchableOpacity>
   </View>
 );
@@ -51,8 +56,11 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontFamily: "Sf-Medium",
   },
-  notificationIcon: {
-    fontSize: 24,
+  notificationContainer: {
+    backgroundColor: "#ffffff",
+    padding: 8,
+    borderRadius: 32,
+    elevation: 2,
   },
 });
 

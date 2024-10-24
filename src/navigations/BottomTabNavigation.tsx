@@ -1,29 +1,12 @@
-// navigation/BottomTabNavigator.tsx
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Text, View } from "react-native";
 import Dashboard from "../screens/Dashboard";
 import BottomNavigationAction from "../components/dashboard/BottomNavigationAction";
 import Stats from "../screens/Stats";
 import QrScan from "../screens/QrScan/QrScan";
-export type RootTabParamList = {
-  Home: undefined;
-  Stats: undefined;
-  QrScan: undefined;
-};
+import { RootTabParamList } from "./types";
+
 const Tab = createBottomTabNavigator<RootTabParamList>();
-
-const SettingsScreen: React.FC = () => (
-  <View>
-    <Text>Settings Screen</Text>
-  </View>
-);
-
-const ProfileScreen: React.FC = () => (
-  <View>
-    <Text>Profile Screen</Text>
-  </View>
-);
 
 const BottomTabNavigator: React.FC = () => {
   return (

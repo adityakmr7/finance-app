@@ -19,63 +19,60 @@ import BalanceCard from "../../components/onboarding/BalanceCard";
 import ActionButtons from "../../components/dashboard/ActionButtons";
 import BottomNavigationAction from "../../components/dashboard/BottomNavigationAction";
 import Transactions from "../../components/dashboard/Transactions";
+import { COLORS } from "../../constants";
+import { DashboardProps } from "./types";
+import { TransferProvider } from "../../context/TransferContext";
 
-type DashboardScreenNavigationProp = StackNavigationProp<
-  RootStackPramsList,
-  "Dashboard"
->;
-
-interface Props {
-  navigation: DashboardScreenNavigationProp;
-}
-const Dashboard: React.FC<Props> = () => {
+const Dashboard: React.FC<DashboardProps> = () => {
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView>
-        {/* Header Section */}
-        <Header
-          userName={"Sarah Muller"}
-          avatarUrl={USER_DATA.profilePic}
-          onNotificationPress={() => null}
-        />
+    <TransferProvider>
+      <SafeAreaView style={styles.container}>
+        <ScrollView>
+          {/* Header Section */}
+          <Header
+            userName={"Sarah Muller"}
+            avatarUrl={USER_DATA.profilePic}
+            onNotificationPress={() => null}
+          />
 
-        <Text style={styles.sectionTitle}>Account</Text>
+          <Text style={styles.sectionTitle}>Account</Text>
 
-        {/* Card Section */}
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          style={styles.cardsContainer}
-        >
-          {[0, 1, 2].map((_, index) => (
-            <View
-              key={index}
-              style={{
-                marginRight: 20,
-                width: Dimensions.get("window").width * 0.7,
-              }}
-            >
-              <BalanceCard />
-            </View>
-          ))}
+          {/* Card Section */}
+          <ScrollView
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            style={styles.cardsContainer}
+          >
+            {[0, 1, 2].map((_, index) => (
+              <View
+                key={index}
+                style={{
+                  marginRight: 20,
+                  width: Dimensions.get("window").width * 0.7,
+                }}
+              >
+                <BalanceCard isEyeIcon={true} color={COLORS.primary} />
+              </View>
+            ))}
+          </ScrollView>
+
+          {/* Action Buttons */}
+          <ActionButtons />
+
+          {/* Transaction Section */}
+          <Transactions />
         </ScrollView>
 
-        {/* Action Buttons */}
-        <ActionButtons />
-
-        {/* Transaction Section */}
-        <Transactions />
-      </ScrollView>
-
-      {/* Bottom Navigation */}
-    </SafeAreaView>
+        {/* Bottom Navigation */}
+      </SafeAreaView>
+    </TransferProvider>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#ffffff",
+    backgroundColor: "#fafcfd",
   },
   header: {
     flexDirection: "row",
